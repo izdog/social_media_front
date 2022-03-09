@@ -16,4 +16,11 @@ export const login = async (loginData) => {
     }
 }
 
+export const isAuth = () => {
+    const user = localStorage.getItem('user')
+    if(!user) return false
+
+    return true
+}
+
 

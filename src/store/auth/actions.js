@@ -9,7 +9,7 @@ export const signin = (loginData) => async (dispatch) => {
     })
 
     const result = await authServices.login(loginData)
-    console.log(result)
+    
     if(result.success){
         dispatch({
             type: actionTypes.LOGIN_SUCCESS,

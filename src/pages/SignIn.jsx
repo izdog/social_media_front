@@ -31,7 +31,7 @@ const LoginPage = () => {
         <div className="h-screen flex justify-center items-center">
             <div className="w-11/12 md:w-2/3 lg:w-1/4 mx-auto p-5 bg-white rounded-md shadow">
                 <h1 className="text-3xl uppercase font-extrabold mb-6 text-blue-900">Login page</h1>
-                { message ? <Alert>{message}</Alert> : ''}
+                { message ? <Alert type="danger">{message}</Alert> : ''}
                 <form action="" onSubmit={onSubmit}>
                     <div className="my-6">
                         <label htmlFor="email">Email :

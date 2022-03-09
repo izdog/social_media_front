@@ -1,14 +1,16 @@
 import './App.css'
-import SignIn from './pages/SignIn'
-import SignUp from './pages/SignUp'
+import {Router as RouterHistory} from 'react-router-dom'
+import {Provider} from 'react-redux'
+import store from './store'
+import AppRouter from './router/AppRouter'
 
 function App() {
   
 
   return (
-    <div className="App">
-      <SignIn />
-    </div>
+    <Provider store={store}>
+      <AppRouter />
+    </Provider>
   )
 }
 
