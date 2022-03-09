@@ -10,30 +10,28 @@ const buttonSizes = {
 }
 
 const buttonColors = {
-    success: '',
-    danger: '',
+    success: 'border-green-500 hover:bg-green-500 hover:text-gray-100',
+    danger: 'border-red-500 hover:bg-red-500 text-red-500 hover:text-gray-100',
     secondary: '',
     primary: 'hover:bg-blue-900 hover:text-white border-blue-900 text-blue-900'
 }
 
 const buttonTypes = {
-    loading: '',
+    loading: 'inline-flex items-center hover:bg-transparent hover:text-blue-700 text-blue-700 border-blue-700',
     disabled: 'bg-gray-300 text-white shadow-none border-none cursor-not-allowed'
 }
 
 const defaultClass = 'inline-block shadow text-center whitespace-nowrap align-middle font-medium rounded border-2 leading-relaxed text-base transition duration-300'
 
 const Button = (props) => {
-    const { children, size, disabled, color, loading } = props
-    let classes = 'btn'
-    classes += size ? ` btn-${size}` : ''
-    classes += disabled ? ' disabled' : ''
-    classes += color ? ` btn-${color}` : ''
-    classes += loading ? ` btn-loading` : ''
+    const { children, size, disabled, color, loading, type } = props
+    const colorClass = buttonColors[color]
+    const sizeClass = buttonSizes[size]
+    
 
     if(loading){
         return (
-            <button disabled={disabled} className={classes}>
+            <button type="button" disabled={disabled} className={classes}>
                 <Spinner color="blue" size={5}/>
                 {children}
             </button>
@@ -41,7 +39,7 @@ const Button = (props) => {
     }
 
     return (
-        <button disabled={disabled} className={classes}>
+        <button disabled={disabled} className={`${defaultClass} ${sizeClass} ${colorClass}`}>
             {children}
         </button>
     )
