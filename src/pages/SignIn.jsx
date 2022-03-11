@@ -28,7 +28,7 @@ const LoginPage = () => {
     }  
 
     return (
-        <div className="h-screen flex justify-center items-center">
+        <div className="items-center">
             <div className="w-11/12 md:w-2/3 lg:w-1/4 mx-auto p-5 bg-white rounded-md shadow">
                 <h1 className="text-3xl uppercase font-extrabold mb-6 text-blue-900">Login page</h1>
                 { message ? <Alert type="danger">{message}</Alert> : ''}
@@ -43,8 +43,10 @@ const LoginPage = () => {
                             <input className="form-input" onChange={handlePasswordChange} type="password" id="password" name="password" value={password}/>
                         </label>
                     </div>
-                    <Button loading={loading}>Se connecter</Button>
+                    <Button loading={loading} size="full">Sign in</Button>
                 </form>
+                <hr className=" my-5 w-9/12 h-0.5 bg-slate-200 mx-auto"/>
+                <div className="text-center text-blue-900"><a href="/signup" className="font-semibold">Sign up</a></div>
             </div>
         </div>
     )

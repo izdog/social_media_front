@@ -4,6 +4,7 @@ import SignIn from '../pages/SignIn'
 import SignUp from '../pages/SignUp'
 import Home from '../pages/Home'
 import { isAuth } from "../auth/AuthService";
+import PostLike from "../components/PostLike";
 
 export default function AppRouter(){
     return (
@@ -18,6 +19,7 @@ export default function AppRouter(){
                 <Route path="/" element={<PrivateWrapper currentUser={isAuth()}>
                     <Home />                    
                 </PrivateWrapper>} />
+                <Route path="/test" element={<PostLike/>} />
             </Routes>
         </BrowserRouter>
     )
