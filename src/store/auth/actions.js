@@ -1,6 +1,7 @@
 import * as actionTypes from './types'
 import * as actionTypesMessage from '../message/types'
 import * as authServices from '../../auth/AuthService'
+import { useNavigate } from 'react-router-dom'
 
 export const signin = (loginData) => async (dispatch) => {
     dispatch({
@@ -21,7 +22,7 @@ export const signin = (loginData) => async (dispatch) => {
         })
         dispatch({
             type: actionTypesMessage.SET_MESSAGE,
-            payload: result
+            payload: {content: result, messageType: 'danger'}
         })
     }
 }

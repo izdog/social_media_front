@@ -1,6 +1,6 @@
 import * as actionTypes from './types'
 
-export const messageActions = {
+const messageActions = {
     setMessage: (message) => ({
         type: actionTypes.SET_MESSAGE,
         payload: message
@@ -9,3 +9,5 @@ export const messageActions = {
         type: actionTypes.CLEAR_MESSAGE
     })
 }
+
+export default messageActions

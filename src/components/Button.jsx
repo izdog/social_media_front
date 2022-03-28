@@ -21,7 +21,8 @@ const buttonColors = {
 }
 
 const buttonTypes = {
-    loading: 'inline-flex items-center hover:bg-transparent hover:text-blue-700 text-blue-700 border-blue-700',
+    default: 'inline-block shadow text-center whitespace-nowrap align-middle font-medium rounded border-2 leading-relaxed text-base transition duration-300',
+    loading: 'inline-flex justify-center items-center shadow text-center whitespace-nowrap align-middle font-medium rounded border-2 leading-relaxed text-base transition duration-300',
 }
 
 
@@ -33,7 +34,7 @@ const Button = (props) => {
 
     if(loading){
         return (
-            <button disabled={disabled} className={`${defaultClass} ${buttonTypes.loading} ${sizeClass}`}>
+            <button disabled={disabled} className={`${buttonTypes.loading} ${sizeClass} ${colorClass}`}>
                 <Spinner color="blue" />
                 {children}
             </button>
@@ -41,7 +42,7 @@ const Button = (props) => {
     }
 
     return (
-        <button disabled={disabled} className={`${defaultClass} ${sizeClass} ${colorClass}`}>
+        <button disabled={disabled} className={`${buttonTypes.default} ${sizeClass} ${colorClass}`}>
             {children}
         </button>
     )

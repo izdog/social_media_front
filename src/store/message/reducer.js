@@ -1,7 +1,8 @@
 import * as actionTypes from './types'
 
 const INITIAL_STATE = {
-    content: ''
+    content: '',
+    messageType: ''
 }
 
 const messageReducer = (state = INITIAL_STATE, action) => {
@@ -9,9 +10,9 @@ const messageReducer = (state = INITIAL_STATE, action) => {
 
     switch(type){
         case actionTypes.SET_MESSAGE:
-            return {content: payload}
+            return payload
         case actionTypes.CLEAR_MESSAGE:
-            return {content: ""}
+            return state
         default:
             return state
     }
