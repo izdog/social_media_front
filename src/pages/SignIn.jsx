@@ -3,8 +3,13 @@ import { useSelector, useDispatch } from "react-redux";
 import { signin } from "../store/auth/actions";
 import Button from '../components/Button'
 import Alert from '../components/Alert'
+import useInput from "../hooks/useInput";
+import Input from "../components/Input";
 
 const LoginPage = () => {
+    const emailValidator = useInput(inputVal => inputVal.trim() !== '')
+    const passValidator = useInput(inputVal => inputVal.trim() !== '')
+    const isValidForm = emailValidator.isInputValid && passValidator.isInputValid
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
@@ -21,6 +26,11 @@ const LoginPage = () => {
     }
     const onSubmit = e => {
         e.preventDefault()
+        if(!isValidForm){
+            if(!emailValidator.isInputValid) { emailValidator.inputBlurHandler()}
+            if(!passValidator.isInputValid){ passValidator.inputBlurHandler()}
+            return
+        }
         dispatch(signin({
             email: email,
             password: password
@@ -34,14 +44,30 @@ const LoginPage = () => {
                 { message ? <Alert type="danger">{message}</Alert> : ''}
                 <form action="" onSubmit={onSubmit}>
                     <div className="my-6">
-                        <label htmlFor="email">Email :
-                            <input className="form-input" onChange={handleEmailChange} type="email" id="email" name="email" value={email}/>
-                        </label>
+                        <Input 
+                            label='E-mail'
+                            id='email'
+                            type='email'
+                            placeHolder='Enter your e-mail'
+                            onChange={emailValidator.valueChangeHandler}
+                            value={emailValidator.inputValue}
+                            onBlur={emailValidator.inputBlurHandler}
+                            error={emailValidator.hasError}
+                            errorMessage='Your e-mail is missing'
+                        />
                     </div>
                     <div className="my-6">
-                        <label htmlFor="email">Password :
-                            <input className="form-input" onChange={handlePasswordChange} type="password" id="password" name="password" value={password}/>
-                        </label>
+                    <Input 
+                            label='Password'
+                            id='password'
+                            type='password'
+                            placeHolder='Enter your password'
+                            onChange={passValidator.valueChangeHandler}
+                            value={passValidator.inputValue}
+                            onBlur={passValidator.inputBlurHandler}
+                            error={passValidator.hasError}
+                            errorMessage='Your password is missing'
+                        />
                     </div>
                     <Button loading={loading} size="full">Sign in</Button>
                 </form>
